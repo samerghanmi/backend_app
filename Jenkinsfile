@@ -19,4 +19,23 @@ pipeline
             }
         }
     }
+    stage('Code Quality Check via SonarQube') {
+        steps 
+        {
+            script 
+            {
+                def scannerHome = tool 'sonarqube';
+                withSonarQubeEnv("sqserv") 
+                {
+                    sh "${tool("sonarqube")}/bin/sonar-scanner \
+                    -Dsonar.projectKey=test-node-js \
+                    -Dsonar.sources=. \
+                    -Dsonar.css.node=. \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    "
+               }
+           }
+       }
+   }
+    
 }
