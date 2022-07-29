@@ -18,7 +18,7 @@ pipeline
                 echo 'done 2'
             }
         }
-    }
+    
     stage('Code Quality Check via SonarQube') {
         steps 
         {
@@ -37,5 +37,6 @@ pipeline
            }
        }
    }
+    }
     
 }
