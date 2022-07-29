@@ -15,6 +15,7 @@ pipeline
             steps
             {
                 sh 'npm install'
+                echo 'done'
             }
         }
     }
