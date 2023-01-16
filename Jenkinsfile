@@ -24,6 +24,7 @@ pipeline
                 bat "docker tag backend:latest samerghanmi/backend"
 
                 bat "docker push samerghanmi/backend"
+                echo 'push succeed'
                     }
                 }
         stage('deploy') {
