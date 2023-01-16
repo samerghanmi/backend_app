@@ -7,7 +7,7 @@ pipeline
         {
             steps
             {
-                sh 'docker build -t backend .'
+                bat 'docker build -t backend .'
                 echo 'done 1'
             }
         }
@@ -15,7 +15,7 @@ pipeline
         {
             steps
             {
-                sh 'npm install'
+                bat 'npm install'
                 echo 'done build'
             }
         }
