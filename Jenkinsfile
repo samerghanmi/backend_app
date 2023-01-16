@@ -1,15 +1,16 @@
 pipeline
 {
-    agent
-    {
-        docker
-        {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
+    agent any
     stages
     {
+        stage('image docker')
+        {
+            steps
+            {
+                sh 'docker build -t backend .'
+                echo 'done 1'
+            }
+        }
         stage('Build')
         {
             steps
@@ -18,14 +19,19 @@ pipeline
                 echo 'done 2'
             }
         }
-        stage('SonarQube analysis') 
-        {
-            def scannerHome = tool 'SonarScanner 4.0';
-            withSonarQubeEnv('sonarscannerserv') 
-            { // If you have configured more than one global server connection, you can specify its name
-                sh "${scannerHome}/bin/sonar-scanner"
-            }
-        }
+        stage('push app') {
+            steps {
+                bat "docker tag backend:latest samerghanmi/backend"
+
+                bat "docker push samerghanmi/backend"
+                    }
+                }
+        stage('deploy') {
+            steps {
+                bat 'docker-compose up'
+                }
+                }
+        
         
     
     
