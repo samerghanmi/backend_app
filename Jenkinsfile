@@ -16,7 +16,7 @@ pipeline
             steps
             {
                 sh 'npm install'
-                echo 'done 2'
+                echo 'done build'
             }
         }
         stage('push app') {
